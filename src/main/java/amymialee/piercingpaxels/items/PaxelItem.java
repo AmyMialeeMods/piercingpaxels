@@ -70,7 +70,7 @@ public class PaxelItem extends MiningToolItem {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (user instanceof ServerPlayerEntity player && !player.isSneaking() && player.currentScreenHandler == player.playerScreenHandler) {
+        if (user instanceof ServerPlayerEntity player && !player.isSneaking() && stack.getDamage() < stack.getMaxDamage() && player.currentScreenHandler == player.playerScreenHandler) {
             HitResult hitResult = user.raycast(5, 1, false);
             if (hitResult instanceof BlockHitResult blockHitResult && !world.getBlockState(blockHitResult.getBlockPos()).isAir()) {
                 ItemStack upgradeActive = getUpgrade(stack, 0);
@@ -137,8 +137,7 @@ public class PaxelItem extends MiningToolItem {
     @Override
     public int getMaxUseTime(ItemStack stack) {
         ItemStack upgradeActive = getUpgrade(stack, 0);
-        ItemStack upgradePassive = getUpgrade(stack, 3);
-        return (upgradeActive != null && !(upgradeActive.isEmpty()) && stack.getDamage() < stack.getMaxDamage()) || (upgradePassive == null || !upgradePassive.isOf(PiercingItems.UPGRADE_UNBREAKABILITY)) ? 16 : Integer.MAX_VALUE;
+        return upgradeActive != null && !(upgradeActive.isEmpty()) ? 16 : 0;
     }
 
     @Override

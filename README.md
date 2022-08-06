@@ -1,7 +1,7 @@
 # Piercing Paxels
-Piercing Paxels is a small mod which adds some customizable multi-tools to the game!
-These paxels can break the same blocks as any tool, and can have upgrades added to them by opening their inventory with shift right-click, adding new abilities and traits.
-They also won't break when they reach 0 durability, instead becoming unusable until repaired, so you won't lose any hard-earned enchantments.
+Piercing Paxels is a small mod which adds some customizable multi-tools to the game!  
+These paxels can break the same blocks as any tool, and can have upgrades added to them by opening their inventory with shift right-click, adding new abilities and traits.  
+They also won't break when they reach 0 durability, instead becoming unusable until repaired, so you won't lose any hard-earned enchantments.  
 
 <img src="https://github.com/AmyMialeeMods/piercing-paxels/raw/main/assets/items.png" alt="The Mod's Items.">  
 <img src="https://github.com/AmyMialeeMods/piercing-paxels/raw/main/assets/recipe.png" alt="The Paxel Recipe.">  
