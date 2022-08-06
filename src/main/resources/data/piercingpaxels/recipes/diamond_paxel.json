@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PAO",
+    "WSH",
+    " S "
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:diamond_sword"
+    },
+    "P": {
+      "item": "minecraft:diamond_pickaxe"
+    },
+    "A": {
+      "item": "minecraft:diamond_axe"
+    },
+    "O": {
+      "item": "minecraft:diamond_shovel"
+    },
+    "H": {
+      "item": "minecraft:diamond_hoe"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "piercingpaxels:diamond_paxel"
+  }
+}

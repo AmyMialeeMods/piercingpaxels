@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PAO",
+    "WSH",
+    " S "
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:golden_sword"
+    },
+    "P": {
+      "item": "minecraft:golden_pickaxe"
+    },
+    "A": {
+      "item": "minecraft:golden_axe"
+    },
+    "O": {
+      "item": "minecraft:golden_shovel"
+    },
+    "H": {
+      "item": "minecraft:golden_hoe"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "piercingpaxels:golden_paxel"
+  }
+}

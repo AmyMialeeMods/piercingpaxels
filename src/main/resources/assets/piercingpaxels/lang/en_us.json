@@ -1,0 +1,27 @@
+{
+  "itemGroup.piercingpaxels.piercingpaxels_group" : "Piercing Paxels",
+  "piercingpaxels.container.paxel" : "Paxel",
+
+  "item.piercingpaxels.wooden_paxel" : "Wooden Paxel",
+  "item.piercingpaxels.stone_paxel" : "Stone Paxel",
+  "item.piercingpaxels.iron_paxel" : "Iron Paxel",
+  "item.piercingpaxels.golden_paxel" : "Golden Paxel",
+  "item.piercingpaxels.diamond_paxel" : "Diamond Paxel",
+  "item.piercingpaxels.netherite_paxel" : "Netherite Paxel",
+
+  "item.piercingpaxels.active_wall" : "3x3 Ability",
+  "item.piercingpaxels.active_tunnel" : "Tunnel Ability",
+  "item.piercingpaxels.active_hole" : "Hole Ability",
+  "item.piercingpaxels.passive_smelt" : "Auto-Smelt Upgrade",
+  "item.piercingpaxels.passive_silence" : "Silence Upgrade",
+  "item.piercingpaxels.passive_vacuum" : "Vacuum Upgrade",
+  "item.piercingpaxels.usage_axe" : "Stripping Upgrade",
+  "item.piercingpaxels.usage_shovel" : "Paving Upgrade",
+  "item.piercingpaxels.usage_hoe" : "Tilling Upgrade",
+  "item.piercingpaxels.upgrade_unbreakable" : "Unbreakability Upgrade",
+
+  "tag.piercingpaxels.mineable/paxel" : "Paxel Mineable",
+  "tag.piercingpaxels.actives" : "Active Paxel Upgrades",
+  "tag.piercingpaxels.passives" : "Passive Paxel Upgrades",
+  "tag.piercingpaxels.usages" : "Usage Paxel Upgrades"
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "piercingpaxels:item/netherite_paxel"
+  }
+}

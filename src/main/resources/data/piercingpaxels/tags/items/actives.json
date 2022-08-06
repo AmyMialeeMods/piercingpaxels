@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "piercingpaxels:active_wall",
+    "piercingpaxels:active_tunnel",
+    "piercingpaxels:active_hole"
+  ]
+}

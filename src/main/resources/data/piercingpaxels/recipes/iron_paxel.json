@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PAO",
+    "WSH",
+    " S "
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:iron_sword"
+    },
+    "P": {
+      "item": "minecraft:iron_pickaxe"
+    },
+    "A": {
+      "item": "minecraft:iron_axe"
+    },
+    "O": {
+      "item": "minecraft:iron_shovel"
+    },
+    "H": {
+      "item": "minecraft:iron_hoe"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "piercingpaxels:iron_paxel"
+  }
+}

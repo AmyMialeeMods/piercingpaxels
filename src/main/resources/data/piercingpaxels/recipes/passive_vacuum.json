@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RCR",
+    "CVC",
+    "RCR"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "V": {
+      "item": "minecraft:hopper"
+    }
+  },
+  "result": {
+    "item": "piercingpaxels:passive_vacuum"
+  }
+}
