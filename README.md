@@ -1,8 +1,10 @@
-# Peculiar Pieces
-Peculiar Pieces is a fun mod which adds a wide assortment of random useful blocks and items to the game, such as pouches to carry your items in or hang gliders to travel long distances with ease.  
-Included in the mod is an expansive book with details about every feature in the mod.
+# Piercing Paxels
+Piercing Paxels is a small mod which adds some customizable multi-tools to the game!
+These paxels can break the same blocks as any tool, and can have upgrades added to them by opening their inventory with shift right-click, adding new abilities and traits.
+They also won't break when they reach 0 durability, instead becoming unusable until repaired, so you won't lose any hard earned enchantments.
 
-<img src="https://github.com/AmyMialeeMods/peculiar-pieces/raw/main/assets/blocksitems.png" alt="The Mod's Blocks.">  
+<img src="https://github.com/AmyMialeeMods/piercing-paxels/raw/main/assets/items.png" alt="The Mod's Items.">  
+<img src="https://github.com/AmyMialeeMods/piercing-paxels/raw/main/assets/recipe.png" alt="The Paxel Recipe.">  
 
 To add Peculiar Pieces to your project as a dependency you need to add the following to your `build.gradle`:
 ```gradle
@@ -11,7 +13,7 @@ repositories {
 }
 
 dependencies {
-	modImplementation "amymialee:peculiarpieces:1.2.1+1.19"
+	modImplementation "amymialee:piercingpaxels:1.0.0+1.19.1"
 }
 ```
 
@@ -29,12 +31,12 @@ dependencies {
             </a>
         </th>
         <th>
-            <a href="https://www.curseforge.com/minecraft/mc-mods/peculiar-pieces">
+            <a href="https://www.curseforge.com/minecraft/mc-mods/piercing-paxels">
                 <img src="https://cdn.discordapp.com/attachments/793182374410059887/923990008543711282/anvil.svg" width="150" height="150" alt="Curseforge">
             </a>
         </th>
         <th>
-            <a href="https://modrinth.com/mod/peculiar-pieces">
+            <a href="https://modrinth.com/mod/piercing-paxels">
                 <img src="https://docs.modrinth.com/img/logo.svg" width="150" height="150" alt="Modrinth">
             </a>
         </th>
