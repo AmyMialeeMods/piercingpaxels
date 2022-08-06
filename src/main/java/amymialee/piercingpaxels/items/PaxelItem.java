@@ -91,7 +91,7 @@ public class PaxelItem extends MiningToolItem {
                                     player.interactionManager.tryBreakBlock(pos);
                                     if (upgradePassive == null || !upgradePassive.isOf(PiercingItems.PASSIVE_SILENCE)) {
                                         world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
-                                        world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(user, state));
+                                        world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos);
                                     }
                                 }
                             }
@@ -110,7 +110,7 @@ public class PaxelItem extends MiningToolItem {
                                     player.interactionManager.tryBreakBlock(pos);
                                     if (upgradePassive == null || !upgradePassive.isOf(PiercingItems.PASSIVE_SILENCE)) {
                                         world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
-                                        world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(user, state));
+                                        world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos);
                                     }
                                 }
                             }
@@ -123,7 +123,7 @@ public class PaxelItem extends MiningToolItem {
                                 player.interactionManager.tryBreakBlock(pos);
                                 if (upgradePassive == null || !upgradePassive.isOf(PiercingItems.PASSIVE_SILENCE)) {
                                     world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
-                                    world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(user, state));
+                                    world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos);
                                 }
                             }
                         }
@@ -245,7 +245,7 @@ public class PaxelItem extends MiningToolItem {
                         Criteria.ITEM_USED_ON_BLOCK.trigger((ServerPlayerEntity) playerEntity, blockPos, itemStack);
                     }
                     world.setBlockState(blockPos, hasUsed.get(), Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
-                    world.emitGameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Emitter.of(playerEntity, hasUsed.get()));
+                    world.emitGameEvent(GameEvent.BLOCK_CHANGE, blockPos);
                     return ActionResult.success(world.isClient);
                 }
             } else if (upgradeUsage.isOf(PiercingItems.USAGE_SHOVEL)) {
@@ -265,7 +265,7 @@ public class PaxelItem extends MiningToolItem {
                     if (blockState3 != null) {
                         if (!world.isClient) {
                             world.setBlockState(blockPos, blockState3, Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
-                            world.emitGameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Emitter.of(playerEntity, blockState3));
+                            world.emitGameEvent(GameEvent.BLOCK_CHANGE, blockPos);
                         }
                         return ActionResult.success(world.isClient);
                     }
