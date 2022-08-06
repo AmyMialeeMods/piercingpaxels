@@ -6,7 +6,7 @@ They also won't break when they reach 0 durability, instead becoming unusable un
 <img src="https://github.com/AmyMialeeMods/piercing-paxels/raw/main/assets/items.png" alt="The Mod's Items.">  
 <img src="https://github.com/AmyMialeeMods/piercing-paxels/raw/main/assets/recipe.png" alt="The Paxel Recipe.">  
 
-To add Peculiar Pieces to your project as a dependency you need to add the following to your `build.gradle`:
+To add Piercing Paxels to your project as a dependency you need to add the following to your `build.gradle`:
 ```gradle
 repositories {
 	maven { url = "https://maven.willbl.dev/releases" }
