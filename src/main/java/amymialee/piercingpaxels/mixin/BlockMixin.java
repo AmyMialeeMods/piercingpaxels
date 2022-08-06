@@ -11,8 +11,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.SmeltingRecipe;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -24,6 +24,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 @Mixin(Block.class)
@@ -80,11 +81,13 @@ public abstract class BlockMixin {
     private static ItemStack simulateSmelt(World world, ItemStack input) {
         fakeFurnace.clear();
         fakeFurnace.setStack(0, input);
-        Recipe<?> recipe = world.getRecipeManager().getFirstMatch(RecipeType.SMELTING, fakeFurnace, world).orElse(null);
-        if (recipe != null) {
-            ItemStack output = recipe.getOutput();
-            output.increment(input.getCount() - output.getCount());
-            return output;
+        List<SmeltingRecipe> recipes = world.getRecipeManager().getAllMatches(RecipeType.SMELTING, fakeFurnace, world);
+        for (SmeltingRecipe recipe : recipes) {
+            if (recipe.getOutput() != null && !recipe.getOutput().isEmpty()) {
+                ItemStack output = recipe.getOutput().copy();
+                output.setCount(output.getCount() * input.getCount());
+                return output;
+            }
         }
         return null;
     }
