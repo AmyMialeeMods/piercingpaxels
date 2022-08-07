@@ -302,6 +302,23 @@ public class PaxelItem extends MiningToolItem {
         return null;
     }
 
+    @Override
+    public boolean isItemBarVisible(ItemStack stack) {
+        ItemStack upgradePassive = getUpgrade(stack, 3);
+        if (upgradePassive != null && upgradePassive.isOf(PiercingItems.UPGRADE_UNBREAKABILITY)) {
+            return false;
+        }
+        return super.isItemBarVisible(stack);
+    }
+
+    @Override
+    public int getItemBarColor(ItemStack stack) {
+        if (stack.getRarity().formatting.getColorValue() != null) {
+            return stack.getRarity().formatting.getColorValue();
+        }
+        return super.getItemBarColor(stack);
+    }
+
     public void openMenu(ServerPlayerEntity player, ItemStack stack) {
         NamedScreenHandlerFactory menu = new NamedScreenHandlerFactory() {
             @Override
