@@ -61,7 +61,7 @@ public class PaxelItem extends MiningToolItem {
             openMenu(serverPlayer, stack);
         }
         ItemStack upgradeActive = getUpgrade(stack, 0);
-        if (upgradeActive != null) {
+        if (upgradeActive != null && !upgradeActive.isEmpty()) {
             user.setCurrentHand(hand);
             return TypedActionResult.consume(user.getStackInHand(hand));
         }
@@ -137,7 +137,10 @@ public class PaxelItem extends MiningToolItem {
     @Override
     public int getMaxUseTime(ItemStack stack) {
         ItemStack upgradeActive = getUpgrade(stack, 0);
-        return upgradeActive != null && !(upgradeActive.isEmpty()) ? 16 : 0;
+        if (upgradeActive != null && !upgradeActive.isEmpty()) {
+            return 16;
+        }
+        return 0;
     }
 
     @Override
