@@ -31,18 +31,20 @@ import java.util.function.Supplier;
 public abstract class BlockMixin {
     @Inject(method = "onBreak", at = @At("HEAD"), cancellable = true)
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfo ci) {
-        ItemStack stack = player.getMainHandStack();
-        if (stack.getItem() instanceof PaxelItem) {
-            ItemStack upgradePassive = PaxelItem.getUpgrade(stack, 1);
-            if (upgradePassive != null && upgradePassive.isOf(PiercingItems.PASSIVE_SILENCE)) {
-                ci.cancel();
+        if (player != null) {
+            ItemStack stack = player.getMainHandStack();
+            if (stack.getItem() instanceof PaxelItem) {
+                ItemStack upgradePassive = PaxelItem.getUpgrade(stack, 1);
+                if (upgradePassive != null && upgradePassive.isOf(PiercingItems.PASSIVE_SILENCE)) {
+                    ci.cancel();
+                }
             }
         }
     }
 
     @Inject(method = "dropStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)V", at = @At("HEAD"), cancellable = true)
     private static void PiercingPaxels$PaxelPassives(BlockState state, World world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack, CallbackInfo ci) {
-        if (world instanceof ServerWorld serverWorld && stack.getItem() instanceof PaxelItem) {
+        if (world instanceof ServerWorld serverWorld && stack != null && stack.getItem() instanceof PaxelItem) {
             ItemStack upgradePassive = PaxelItem.getUpgrade(stack, 1);
             if (upgradePassive != null) {
                 if (upgradePassive.isOf(PiercingItems.PASSIVE_SMELT)) {
