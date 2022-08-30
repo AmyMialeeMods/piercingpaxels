@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-	modImplementation "amymialee:piercingpaxels:1.0.0+1.19.1"
+	modImplementation "amymialee:piercingpaxels:1.0.3+1.18.x"
 }
 ```
 

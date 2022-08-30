@@ -61,7 +61,7 @@ public class PaxelItem extends MiningToolItem {
             openMenu(serverPlayer, stack);
         }
         ItemStack upgradeActive = getUpgrade(stack, 0);
-        if (upgradeActive != null) {
+        if (upgradeActive != null && !upgradeActive.isEmpty()) {
             user.setCurrentHand(hand);
             return TypedActionResult.consume(user.getStackInHand(hand));
         }
@@ -137,7 +137,10 @@ public class PaxelItem extends MiningToolItem {
     @Override
     public int getMaxUseTime(ItemStack stack) {
         ItemStack upgradeActive = getUpgrade(stack, 0);
-        return upgradeActive != null && !(upgradeActive.isEmpty()) ? 16 : 0;
+        if (upgradeActive != null && !upgradeActive.isEmpty()) {
+            return 16;
+        }
+        return 0;
     }
 
     @Override
@@ -300,6 +303,23 @@ public class PaxelItem extends MiningToolItem {
             return stacks.get(slot);
         }
         return null;
+    }
+
+    @Override
+    public boolean isItemBarVisible(ItemStack stack) {
+        ItemStack upgradePassive = getUpgrade(stack, 3);
+        if (upgradePassive != null && upgradePassive.isOf(PiercingItems.UPGRADE_UNBREAKABILITY)) {
+            return false;
+        }
+        return super.isItemBarVisible(stack);
+    }
+
+    @Override
+    public int getItemBarColor(ItemStack stack) {
+        if (stack.getRarity().formatting.getColorValue() != null) {
+            return stack.getRarity().formatting.getColorValue();
+        }
+        return super.getItemBarColor(stack);
     }
 
     public void openMenu(ServerPlayerEntity player, ItemStack stack) {
