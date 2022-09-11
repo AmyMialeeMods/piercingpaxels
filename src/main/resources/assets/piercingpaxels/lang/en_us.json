@@ -20,6 +20,8 @@
   "item.piercingpaxels.usage_hoe" : "Tilling Upgrade",
   "item.piercingpaxels.upgrade_unbreakable" : "Unbreakability Upgrade",
 
+  "item.piercingpaxels.paxel.empty_tooltip" : "Use while sneaking to access Upgrades",
+
   "tag.piercingpaxels.mineable/paxel" : "Paxel Mineable",
   "tag.piercingpaxels.actives" : "Active Paxel Upgrades",
   "tag.piercingpaxels.passives" : "Passive Paxel Upgrades",

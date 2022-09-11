@@ -15,7 +15,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.block.Oxidizable;
 import net.minecraft.block.PillarBlock;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
@@ -35,6 +38,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.collection.DefaultedList;
@@ -45,7 +49,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
 import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -58,7 +64,8 @@ public class PaxelItem extends MiningToolItem {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
         if (user.isSneaking() && !world.isClient && user instanceof ServerPlayerEntity serverPlayer) {
-            openMenu(serverPlayer, stack);
+            this.openMenu(serverPlayer, stack);
+            return TypedActionResult.success(user.getStackInHand(hand));
         }
         ItemStack upgradeActive = getUpgrade(stack, 0);
         if (upgradeActive != null && !upgradeActive.isEmpty()) {
@@ -138,7 +145,12 @@ public class PaxelItem extends MiningToolItem {
     public int getMaxUseTime(ItemStack stack) {
         ItemStack upgradeActive = getUpgrade(stack, 0);
         if (upgradeActive != null && !upgradeActive.isEmpty()) {
-            return 16;
+            float time = (16 - miningSpeed) * 2;
+            int efficiency = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, stack);
+            if (efficiency > 0) {
+                time -= efficiency + 1;
+            }
+            return Math.max((int) time, 1);
         }
         return 0;
     }
@@ -200,6 +212,21 @@ public class PaxelItem extends MiningToolItem {
     public boolean isSuitableFor(BlockState state) {
         int i = this.getMaterial().getMiningLevel();
         return i >= MiningLevelManager.getRequiredMiningLevel(state);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        DefaultedList<ItemStack> stacks = DefaultedList.ofSize(4, ItemStack.EMPTY);
+        if (stack.hasNbt() && stack.getNbt() != null) {
+            Inventories.readNbt(stack.getNbt(), stacks);
+        }
+        DefaultedList<ItemStack> filteredStacks = DefaultedList.of();
+        stacks.stream().filter((a) -> !a.isEmpty()).forEach(filteredStacks::add);
+        if (filteredStacks.size() == 0) {
+            Rarity rarity = Rarity.values()[Math.max(0, stack.getRarity().ordinal() - 1)];
+            tooltip.add(Text.translatable("item.piercingpaxels.paxel.empty_tooltip").formatted(rarity.formatting));
+        }
+        super.appendTooltip(stack, world, tooltip, context);
     }
 
     @Override

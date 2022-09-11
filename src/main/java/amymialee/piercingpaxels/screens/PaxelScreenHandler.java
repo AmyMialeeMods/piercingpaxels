@@ -13,6 +13,7 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Hand;
 import net.minecraft.util.collection.DefaultedList;
 
 public class PaxelScreenHandler extends ScreenHandler {
@@ -86,7 +87,12 @@ public class PaxelScreenHandler extends ScreenHandler {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        return true;
+        for (Hand hand : Hand.values()) {
+            if (player.getStackInHand(hand) == paxel) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private int getSize() {
