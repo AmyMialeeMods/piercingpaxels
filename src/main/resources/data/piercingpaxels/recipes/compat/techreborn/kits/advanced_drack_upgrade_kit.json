@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " E ",
+    "UBU",
+    "SUS"
+  ],
+  "key": {
+    "U": {
+      "item": "piercingpaxels:tr_advanced_upgrade_kit"
+    },
+    "E": {
+      "item": "minecraft:diamond"
+    },
+    "B": {
+      "item": "techreborn:lithium_ion_battery"
+    },
+    "S": {
+      "tag": "c:titanium_ingots"
+    }
+  },
+  "result": {
+    "item": "piercingpaxels:tr_advanced_drack_upgrade_kit"
+  }
+}

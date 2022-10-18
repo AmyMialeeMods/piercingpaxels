@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "piercingpaxels:netherite_paxel_upgrade_kit"
+    }
+  ],
+  "result": {
+    "item": "minecraft:netherite_ingot",
+    "count": 5
+  }
+}

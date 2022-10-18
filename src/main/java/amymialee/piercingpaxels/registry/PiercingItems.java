@@ -1,9 +1,12 @@
 package amymialee.piercingpaxels.registry;
 
 import amymialee.piercingpaxels.PiercingPaxels;
+import amymialee.piercingpaxels.compat.spirit.SpiritPaxels;
+import amymialee.piercingpaxels.compat.techreborn.TechRebornPaxels;
 import amymialee.piercingpaxels.items.PaxelItem;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -22,6 +25,8 @@ public class PiercingItems {
     public static final Item DIAMOND_PAXEL = registerItem("diamond_paxel", new PaxelItem(ToolMaterials.DIAMOND, 5.0f, -2.8f, new FabricItemSettings().rarity(Rarity.RARE).group(PAXELS_GROUP)));
     public static final Item NETHERITE_PAXEL = registerItem("netherite_paxel", new PaxelItem(ToolMaterials.NETHERITE, 5.0f, -2.8f, new FabricItemSettings().rarity(Rarity.RARE).group(PAXELS_GROUP).fireproof()));
 
+    public static final Item NETHERITE_UPGRADE_KIT = registerItem("netherite_paxel_upgrade_kit", new Item(new FabricItemSettings().rarity(Rarity.RARE).group(PAXELS_GROUP)));
+
     public static final Item ACTIVE_WALL = registerItem("active_wall", new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.UNCOMMON).group(PAXELS_GROUP)));
     public static final Item ACTIVE_TUNNEL = registerItem("active_tunnel", new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.UNCOMMON).group(PAXELS_GROUP)));
     public static final Item ACTIVE_HOLE = registerItem("active_hole", new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.UNCOMMON).group(PAXELS_GROUP)));
@@ -36,7 +41,14 @@ public class PiercingItems {
 
     public static final Item UPGRADE_UNBREAKABILITY = registerItem("upgrade_unbreakable", new Item(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC).group(PAXELS_GROUP)));
 
-    public static void init() {}
+    public static void init() {
+        if (FabricLoader.getInstance().isModLoaded("techreborn")) {
+            TechRebornPaxels.init();
+        }
+        if (FabricLoader.getInstance().isModLoaded("spirit")) {
+            SpiritPaxels.init();
+        }
+    }
 
     public static Item registerItem(String name, Item item) {
         return Registry.register(Registry.ITEM, PiercingPaxels.id(name), item);

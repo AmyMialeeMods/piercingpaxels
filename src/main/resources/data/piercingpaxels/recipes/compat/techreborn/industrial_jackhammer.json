@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "addition": {
+    "item": "piercingpaxels:tr_industrial_upgrade_kit"
+  },
+  "base": {
+    "item": "techreborn:advanced_jackhammer"
+  },
+  "result": {
+    "item": "techreborn:industrial_jackhammer"
+  }
+}

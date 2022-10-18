@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " CD",
+    "SBJ",
+    "ES "
+  ],
+  "key": {
+    "D": {
+      "item": "techreborn:basic_drill"
+    },
+    "C": {
+      "item": "techreborn:basic_chainsaw"
+    },
+    "J": {
+      "item": "techreborn:basic_jackhammer"
+    },
+    "S": {
+      "item": "techreborn:refined_iron_ingot"
+    },
+    "B": {
+      "item": "techreborn:red_cell_battery"
+    },
+    "E": {
+      "item": "techreborn:electronic_circuit"
+    }
+  },
+  "result": {
+    "item": "piercingpaxels:tr_basic_drack"
+  }
+}

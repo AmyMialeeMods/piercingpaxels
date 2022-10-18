@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " O ",
+    "UEU",
+    "IUI"
+  ],
+  "key": {
+    "U": {
+      "item": "piercingpaxels:tr_industrial_upgrade_kit"
+    },
+    "I": {
+      "item": "techreborn:iridium_alloy_plate"
+    },
+    "E": {
+      "item": "techreborn:energy_flow_chip"
+    },
+    "O": {
+      "item": "techreborn:overclocker_upgrade"
+    }
+  },
+  "result": {
+    "item": "piercingpaxels:tr_industrial_drack_upgrade_kit"
+  }
+}

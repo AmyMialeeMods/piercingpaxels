@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "piercingpaxels:item/tr_industrial_upgrade_kit"
+  }
+}

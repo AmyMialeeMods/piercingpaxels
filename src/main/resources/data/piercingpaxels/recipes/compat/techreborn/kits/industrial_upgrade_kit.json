@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    "NCN",
+    "OSO"
+  ],
+  "key": {
+    "I": {
+      "item": "techreborn:iridium_alloy_plate"
+    },
+    "N": {
+      "tag": "c:iridium_nuggets"
+    },
+    "C": {
+      "item": "techreborn:energy_flow_chip"
+    },
+    "O": {
+      "item": "techreborn:overclocker_upgrade"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "piercingpaxels:tr_industrial_upgrade_kit"
+  }
+}

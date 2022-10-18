@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " CD",
+    "IEJ",
+    "OI "
+  ],
+  "key": {
+    "D": {
+      "item": "techreborn:industrial_drill"
+    },
+    "C": {
+      "item": "techreborn:industrial_chainsaw"
+    },
+    "J": {
+      "item": "techreborn:industrial_jackhammer"
+    },
+    "I": {
+      "item": "techreborn:iridium_alloy_plate"
+    },
+    "E": {
+      "item": "techreborn:energy_flow_chip"
+    },
+    "O": {
+      "item": "techreborn:overclocker_upgrade"
+    }
+  },
+  "result": {
+    "item": "piercingpaxels:tr_industrial_drack"
+  }
+}

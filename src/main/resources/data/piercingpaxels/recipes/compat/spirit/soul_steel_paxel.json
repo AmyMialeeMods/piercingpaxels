@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PAO",
+    "WSH",
+    " S "
+  ],
+  "key": {
+    "W": {
+      "item": "spirit:soul_steel_sword"
+    },
+    "P": {
+      "item": "spirit:soul_steel_pickaxe"
+    },
+    "A": {
+      "item": "spirit:soul_steel_axe"
+    },
+    "O": {
+      "item": "spirit:soul_steel_shovel"
+    },
+    "H": {
+      "item": "spirit:soul_steel_hoe"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "piercingpaxels:soul_steel_paxel"
+  }
+}

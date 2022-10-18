@@ -1,6 +1,7 @@
 package amymialee.piercingpaxels.items;
 
 import amymialee.piercingpaxels.PiercingPaxels;
+import amymialee.piercingpaxels.compat.techreborn.TechRebornPaxels;
 import amymialee.piercingpaxels.registry.PiercingItems;
 import amymialee.piercingpaxels.screens.PaxelScreenHandler;
 import amymialee.piercingpaxels.util.PaxelTooltipData;
@@ -9,6 +10,7 @@ import net.fabricmc.fabric.api.mininglevel.v1.MiningLevelManager;
 import net.fabricmc.fabric.mixin.content.registry.AxeItemAccessor;
 import net.fabricmc.fabric.mixin.content.registry.HoeItemAccessor;
 import net.fabricmc.fabric.mixin.content.registry.ShovelItemAccessor;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -77,7 +79,7 @@ public class PaxelItem extends MiningToolItem {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (user instanceof ServerPlayerEntity player && !player.isSneaking() && stack.getDamage() < stack.getMaxDamage() && player.currentScreenHandler == player.playerScreenHandler) {
+        if (user instanceof ServerPlayerEntity player && !player.isSneaking() && isNotBroken(stack) && player.currentScreenHandler == player.playerScreenHandler) {
             HitResult hitResult = user.raycast(5, 1, false);
             if (hitResult instanceof BlockHitResult blockHitResult && !world.getBlockState(blockHitResult.getBlockPos()).isAir()) {
                 ItemStack upgradeActive = getUpgrade(stack, 0);
@@ -174,21 +176,28 @@ public class PaxelItem extends MiningToolItem {
         super.onItemEntityDestroyed(entity);
     }
 
+    protected boolean isNotBroken(ItemStack stack) {
+        ItemStack upgradePassive = getUpgrade(stack, 3);
+        return (upgradePassive != null && upgradePassive.isOf(PiercingItems.UPGRADE_UNBREAKABILITY)) || stack.getDamage() < stack.getMaxDamage();
+    }
+
+    protected boolean damagePaxel(ItemStack stack, LivingEntity user) {
+        ItemStack upgradePassive = getUpgrade(stack, 3);
+        if ((upgradePassive == null || !upgradePassive.isOf(PiercingItems.UPGRADE_UNBREAKABILITY))) {
+            return stack.damage(1, user.getRandom(), user instanceof ServerPlayerEntity player ? player : null);
+        }
+        return false;
+    }
+
     @Override
     public float getMiningSpeedMultiplier(ItemStack stack, BlockState state) {
-        ItemStack upgradePassive = getUpgrade(stack, 3);
-        return (upgradePassive != null && upgradePassive.isOf(PiercingItems.UPGRADE_UNBREAKABILITY)) || stack.getDamage() < stack.getMaxDamage() ? this.miningSpeed : 0.01f;
+        return isNotBroken(stack) ? this.miningSpeed : 0.01f;
     }
 
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        ItemStack upgradePassive = getUpgrade(stack, 3);
-        if (upgradePassive == null || !upgradePassive.isOf(PiercingItems.UPGRADE_UNBREAKABILITY)) {
-            if (stack.getDamage() >= stack.getMaxDamage() || stack.damage(1, attacker.getRandom(), attacker instanceof ServerPlayerEntity player ? player : null)) {
-                attacker.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
-            }
-        } else {
-            stack.setDamage(stack.getDamage() - 1);
+        if (!this.isNotBroken(stack) || this.damagePaxel(stack, attacker)) {
+            attacker.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
         }
         return true;
     }
@@ -196,13 +205,8 @@ public class PaxelItem extends MiningToolItem {
     @Override
     public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
         if (!world.isClient && state.getHardness(world, pos) != 0.0f) {
-            ItemStack upgradePassive = getUpgrade(stack, 3);
-            if (upgradePassive == null || !upgradePassive.isOf(PiercingItems.UPGRADE_UNBREAKABILITY)) {
-                if (stack.getDamage() >= stack.getMaxDamage() || stack.damage(1, miner.getRandom(), miner instanceof ServerPlayerEntity player ? player : null)) {
-                    miner.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
-                }
-            } else {
-                stack.setDamage(stack.getDamage() - 1);
+            if (!this.isNotBroken(stack) || this.damagePaxel(stack, miner)) {
+                miner.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
             }
         }
         return true;
@@ -315,6 +319,9 @@ public class PaxelItem extends MiningToolItem {
                     }
                     return ActionResult.success(world.isClient);
                 }
+            }
+            if (FabricLoader.getInstance().isModLoaded("techreborn")) {
+                TechRebornPaxels.paxelUsages(upgradeUsage, context);
             }
         }
         return ActionResult.PASS;

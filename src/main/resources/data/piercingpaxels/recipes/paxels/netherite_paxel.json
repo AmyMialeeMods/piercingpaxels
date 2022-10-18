@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PAO",
+    "WSH",
+    " S "
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:netherite_sword"
+    },
+    "P": {
+      "item": "minecraft:netherite_pickaxe"
+    },
+    "A": {
+      "item": "minecraft:netherite_axe"
+    },
+    "O": {
+      "item": "minecraft:netherite_shovel"
+    },
+    "H": {
+      "item": "minecraft:netherite_hoe"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "piercingpaxels:netherite_paxel"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PAO",
+    "WSH",
+    " S "
+  ],
+  "key": {
+    "W": {
+      "item": "techreborn:bronze_sword"
+    },
+    "P": {
+      "item": "techreborn:bronze_pickaxe"
+    },
+    "A": {
+      "item": "techreborn:bronze_axe"
+    },
+    "O": {
+      "item": "techreborn:bronze_spade"
+    },
+    "H": {
+      "item": "techreborn:bronze_hoe"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "piercingpaxels:tr_bronze_paxel"
+  }
+}
