@@ -7,17 +7,6 @@ They also won't break when they reach 0 durability, instead becoming unusable un
 <img src="https://github.com/AmyMialeeMods/piercing-paxels/raw/main/assets/recipe.png" alt="The Paxel Recipe.">  
 <img src="https://github.com/AmyMialeeMods/piercing-paxels/raw/main/assets/max.png" alt="Peak Paxel.">  
 
-To add Piercing Paxels to your project as a dependency you need to add the following to your `build.gradle`:
-```gradle
-repositories {
-	maven { url = "https://maven.willbl.dev/releases" }
-}
-
-dependencies {
-	modImplementation "amymialee:piercingpaxels:1.0.4+1.19.x"
-}
-```
-
 <table align="center">
     <tr>
         <th><b>Join my Discord</b></th>
