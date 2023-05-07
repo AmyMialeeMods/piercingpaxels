@@ -34,7 +34,7 @@ public class PaxelScreen extends HandledScreen<PaxelScreenHandler> implements Sc
 
     @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
         int i = (this.width - this.backgroundWidth) / 2;
@@ -42,19 +42,19 @@ public class PaxelScreen extends HandledScreen<PaxelScreenHandler> implements Sc
         this.drawTexture(matrices, i, j, 0, 0, this.backgroundWidth, this.backgroundHeight);
         if (handler.getSlot(0).getStack().isEmpty()) {
             RenderSystem.setShaderTexture(0, EMPTY_ACTIVE);
-            DrawableHelper.drawTexture(matrices, x + 26, y + 20, getZOffset(), 0, 0, 16, 16, 16, 16);
+            DrawableHelper.drawTexture(matrices, x + 26, y + 20, 0, 0, 16, 16, 16, 16);
         }
         if (handler.getSlot(1).getStack().isEmpty()) {
             RenderSystem.setShaderTexture(0, EMPTY_PASSIVE);
-            DrawableHelper.drawTexture(matrices, x + 62, y + 20, getZOffset(), 0, 0, 16, 16, 16, 16);
+            DrawableHelper.drawTexture(matrices, x + 62, y + 20, 0, 0, 16, 16, 16, 16);
         }
         if (handler.getSlot(2).getStack().isEmpty()) {
             RenderSystem.setShaderTexture(0, EMPTY_USAGE);
-            DrawableHelper.drawTexture(matrices, x + 98, y + 20, getZOffset(), 0, 0, 16, 16, 16, 16);
+            DrawableHelper.drawTexture(matrices, x + 98, y + 20, 0, 0, 16, 16, 16, 16);
         }
         if (handler.getSlot(3).getStack().isEmpty()) {
             RenderSystem.setShaderTexture(0, EMPTY_UNBREAKABLE);
-            DrawableHelper.drawTexture(matrices, x + 134, y + 20, getZOffset(), 0, 0, 16, 16, 16, 16);
+            DrawableHelper.drawTexture(matrices, x + 134, y + 20, 0, 0, 16, 16, 16, 16);
         }
     }
 }

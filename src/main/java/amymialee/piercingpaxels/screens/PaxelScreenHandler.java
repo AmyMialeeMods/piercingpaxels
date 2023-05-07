@@ -100,7 +100,7 @@ public class PaxelScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public ItemStack transferSlot(PlayerEntity player, int index) {
+    public ItemStack quickMove(PlayerEntity player, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot.hasStack()) {
@@ -110,7 +110,7 @@ public class PaxelScreenHandler extends ScreenHandler {
                 return ItemStack.EMPTY;
             }
             if (itemStack2.isEmpty()) {
-                slot.setStack(ItemStack.EMPTY);
+                slot.setStackNoCallbacks(ItemStack.EMPTY);
             } else {
                 slot.markDirty();
             }
@@ -119,8 +119,8 @@ public class PaxelScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public void close(PlayerEntity player) {
-        super.close(player);
+    public void onClosed(PlayerEntity player) {
+        super.onClosed(player);
         this.paxelInv.onClose(player);
         ItemStack upgradePassive = PaxelItem.getUpgrade(paxel, 1);
         if (upgradePassive == null || !upgradePassive.isOf(PiercingItems.PASSIVE_SILENCE)) {

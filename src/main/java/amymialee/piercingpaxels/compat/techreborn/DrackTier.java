@@ -3,7 +3,6 @@ package amymialee.piercingpaxels.compat.techreborn;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.ToolMaterials;
 import reborncore.common.powerSystem.RcEnergyTier;
-import techreborn.items.tool.MiningLevel;
 
 public class DrackTier {
     private ToolMaterial material = ToolMaterials.WOOD;

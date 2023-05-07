@@ -37,12 +37,12 @@ public class PaxelTooltipComponent implements TooltipComponent {
     }
 
     @Override
-    public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer, int z) {
+    public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer) {
         for (int m = 0; m < inventory.size(); ++m) {
             int n = x + m * 20;
             ItemStack stack = inventory.get(m);
-            itemRenderer.renderInGuiWithOverrides(stack, n, y - 1, m);
-            itemRenderer.renderGuiItemOverlay(textRenderer, stack, n, y - 1);
+            itemRenderer.renderInGuiWithOverrides(matrices, stack, n, y - 1, m);
+            itemRenderer.renderGuiItemOverlay(matrices, textRenderer, stack, n, y - 1);
             UpgradeType type = null;
             if (stack.isIn(PiercingPaxels.ACTIVES)) {
                 type = UpgradeType.ACTIVE;

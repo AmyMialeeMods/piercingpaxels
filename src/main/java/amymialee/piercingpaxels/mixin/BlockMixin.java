@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.SmeltingRecipe;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -83,10 +84,11 @@ public abstract class BlockMixin {
     private static ItemStack simulateSmelt(World world, ItemStack input) {
         fakeFurnace.clear();
         fakeFurnace.setStack(0, input);
+        DynamicRegistryManager registryManager = world.getRegistryManager();
         List<SmeltingRecipe> recipes = world.getRecipeManager().getAllMatches(RecipeType.SMELTING, fakeFurnace, world);
         for (SmeltingRecipe recipe : recipes) {
-            if (recipe.getOutput() != null && !recipe.getOutput().isEmpty()) {
-                ItemStack output = recipe.getOutput().copy();
+            if (recipe.getOutput(registryManager) != null && !recipe.getOutput(registryManager).isEmpty()) {
+                ItemStack output = recipe.getOutput(registryManager).copy();
                 output.setCount(output.getCount() * input.getCount());
                 return output;
             }

@@ -5,19 +5,22 @@ import amymialee.piercingpaxels.screens.PaxelScreenHandler;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class PiercingPaxels implements ModInitializer {
     public static final String MOD_ID = "piercingpaxels";
-    public static final TagKey<Block> PAXEL_MINEABLE = TagKey.of(Registry.BLOCK_KEY, id("mineable/paxel"));
-    public static final TagKey<Item> ACTIVES = TagKey.of(Registry.ITEM_KEY, id("actives"));
-    public static final TagKey<Item> PASSIVES = TagKey.of(Registry.ITEM_KEY, id("passives"));
-    public static final TagKey<Item> USAGES = TagKey.of(Registry.ITEM_KEY, id("usages"));
+    public static final TagKey<Block> PAXEL_MINEABLE = TagKey.of(RegistryKeys.BLOCK, id("mineable/paxel"));
+    public static final TagKey<Item> ACTIVES = TagKey.of(RegistryKeys.ITEM, id("actives"));
+    public static final TagKey<Item> PASSIVES = TagKey.of(RegistryKeys.ITEM, id("passives"));
+    public static final TagKey<Item> USAGES = TagKey.of(RegistryKeys.ITEM, id("usages"));
 
-    public static final ScreenHandlerType<PaxelScreenHandler> PAXEL_SCREEN_HANDLER = Registry.register(Registry.SCREEN_HANDLER, "paxel", new ScreenHandlerType<>((a, b) -> new PaxelScreenHandler(a, b, PiercingItems.WOODEN_PAXEL.getDefaultStack().copy())));
+    public static final ScreenHandlerType<PaxelScreenHandler> PAXEL_SCREEN_HANDLER = Registry.register(Registries.SCREEN_HANDLER, "paxel", new ScreenHandlerType<>((a, b) -> new PaxelScreenHandler(a, b, PiercingItems.WOODEN_PAXEL.getDefaultStack().copy()), FeatureFlags.VANILLA_FEATURES));
 
     @Override
     public void onInitialize() {

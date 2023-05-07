@@ -26,7 +26,7 @@
     "piercingpaxels.mixins.json"
   ],
   "depends": {
-    "fabric": "*"
+    "fabric-api": "*"
   },
   "custom": {
     "modmenu": {
