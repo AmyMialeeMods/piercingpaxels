@@ -1,54 +1,45 @@
 plugins {
-    id 'fabric-loom' version '1.0-SNAPSHOT'
-    id 'maven-publish'
+    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "dev.architectury.loom" version "1.1-SNAPSHOT" apply false
 }
 
-version = project.mod_version
-group = project.maven_group
-
-repositories {
-    maven { url = "https://jitpack.io/" }
-    maven { url = "https://maven.terraformersmc.com/" }
-    maven { url = 'https://maven.fabricmc.net/' }
-    maven { url = 'https://maven.minecraftforge.net/' }
-    maven { url = "https://nexus.resourcefulbees.com/repository/maven-public/" }
+architectury {
+    minecraft = rootProject.minecraft_version
 }
 
-dependencies {
-    //Fabric
-    minecraft ("com.mojang:minecraft:${project.minecraft_version}")
-    mappings ("net.fabricmc:yarn:${project.yarn_mappings}:v2")
-    modImplementation ("net.fabricmc:fabric-loader:${project.loader_version}")
-    modImplementation ("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
-    //External
-    modImplementation ("dev.emi:emi:0.5.3+1.19.2")
-    modImplementation ("TechReborn:TechReborn-1.19:5.3.4")
-    modImplementation ("me.codexadrian.spirit:spirit-fabric-1.19.2:2.1.12")
-}
+subprojects {
+    apply plugin: "dev.architectury.loom"
 
-processResources {
-    inputs.property "version", project.version
-    filteringCharset "UTF-8"
+    loom {
+        silentMojangMappingsLicense()
+    }
 
-    filesMatching("fabric.mod.json") {
-        expand "version": project.version
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+        mappings ("net.fabricmc:yarn:1.20+build.1:v2")
+        include( implementation( annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-fabric:${project.mixin_extras_version}")))
     }
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
+    apply plugin: "maven-publish"
+
+    archivesBaseName = rootProject.archives_base_name
+    version = rootProject.mod_version
+    group = rootProject.maven_group
+
     repositories {
-        maven {
-            name = "willBlRepositoryReleases"
-            url = "https://maven.willbl.dev/releases"
-            credentials(PasswordCredentials)
-            authentication {
-                basic(BasicAuthentication)
-            }
-        }
+        maven { url = "https://jitpack.io" }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.release = 17
+    }
+
+    java {
+        withSourcesJar()
     }
 }

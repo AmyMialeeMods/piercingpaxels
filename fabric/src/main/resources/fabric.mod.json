@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "piercingpaxels",
+  "version": "${version}",
+  "name": "piercingpaxels",
+  "description": "Dynamic Upgradable Multi-tools!",
+  "authors": [
+    "AmyMialee"
+  ],
+  "contact": {
+    "repo": "https://github.com/AmyMialeeMods/piercingpaxels"
+  },
+  "license": "All Rights Reserved",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "xyz.amymialee.piercingpaxels.fabric.PiercingPaxelsFabricClient"
+    ],
+    "main": [
+      "xyz.amymialee.piercingpaxels.fabric.PiercingPaxelsFabric"
+    ]
+  },
+  "mixins": [
+    "piercingpaxels.mixins.json",
+    "piercingpaxels-common.mixins.json"
+  ],
+  "depends": {
+    "fabric": "*"
+  }
+}

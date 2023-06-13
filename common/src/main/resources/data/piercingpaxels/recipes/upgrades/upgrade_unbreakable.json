@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GSG",
+    "NRN",
+    "GNG"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "G": {
+      "item": "minecraft:gold_nugget"
+    },
+    "S": {
+      "item": "minecraft:nether_star"
+    },
+    "R": {
+      "item": "piercingpaxels:upgrade_restoration"
+    }
+  },
+  "result": {
+    "item": "piercingpaxels:upgrade_unbreakable"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GNG",
+    "NSN",
+    "GNG"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:diamond"
+    },
+    "G": {
+      "item": "minecraft:moss_block"
+    },
+    "S": {
+      "item": "minecraft:end_crystal"
+    }
+  },
+  "result": {
+    "item": "piercingpaxels:upgrade_restoration"
+  }
+}
