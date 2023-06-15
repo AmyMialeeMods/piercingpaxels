@@ -125,7 +125,7 @@ public class PaxelItem extends MiningToolItem {
 
     @Override
     public boolean isSuitableFor(BlockState state) {
-        return this.getMaterial().getMiningLevel() <= getMiningLevel(state);
+        return this.getMaterial().getMiningLevel() >= getMiningLevel(state);
     }
 
     public static int getMiningLevel(BlockState state) {
