@@ -26,6 +26,7 @@
     "piercingpaxels-common.mixins.json"
   ],
   "depends": {
-    "fabric": "*"
+    "fabric": "*",
+    "architectury": "*"
   }
 }
