@@ -1,95 +1,90 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "7.1.2"
-    id 'com.matthewprenger.cursegradle' version '1.4.0'
-    id "com.modrinth.minotaur" version "2.+"
-}
-architectury {
-    platformSetupLoomIde()
-    forge()
+    id 'java'
+    id 'idea'
+    id 'maven-publish'
+    id 'dev.architectury.loom'
 }
 
-configurations {
-    common
-    shadowCommon
-    compileClasspath.extendsFrom common
-    runtimeClasspath.extendsFrom common
-    developmentForge.extendsFrom common
+base {
+    archivesName = "${mod_name}-forge-${minecraft_version}"
 }
 
-repositories {
-    maven { url = "https://jitpack.io" }
-}
-
-dependencies {
-    forge "net.minecraftforge:forge:${rootProject.forge_version}"
-    modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
-    common(project(path: ":common", configuration: "namedElements")) { transitive false }
-    shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
-    implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:${project.mixin_extras_version}"))
-    implementation(include("com.github.llamalad7.mixinextras:mixinextras-forge:${project.mixin_extras_version}"))
-}
-
-processResources {
-    inputs.property "version", project.version
-
-    filesMatching("META-INF/mods.toml") {
-        expand "version": project.version
+loom {
+    forge {
+        mixinConfig "${mod_id}.mixins.json"
+        mixinConfig "${mod_id}.forge.mixins.json"
+        convertAccessWideners = true
     }
-}
 
-shadowJar {
-    exclude "fabric.mod.json"
+    mixin {
+        defaultRefmapName.set("${mod_id}.refmap.json")
+    }
 
-    configurations = [project.configurations.shadowCommon]
-    archiveClassifier.set("dev-shadow")
-}
-
-remapJar {
-    inputFile.set shadowJar.archiveFile
-    dependsOn shadowJar
-    archiveClassifier.set(null)
-}
-
-jar {
-    archiveClassifier.set("dev")
-}
-
-sourcesJar {
-    def commonSources = project(":common").sourcesJar
-    dependsOn commonSources
-    from commonSources.archiveFile.map { zipTree(it) }
-}
-
-curseforge {
-    apiKey = project.hasProperty('curseforge_api_key') ? project.property('curseforge_api_key') : ''
-    project {
-        id = project.curseforge_project_id
-        changelogType = 'markdown'
-        changelog = file("CHANGELOG.md")
-        addGameVersion project.minecraft_version
-        addGameVersion "Forge"
-        mainArtifact(remapJar) {
-            displayName = "v${project.version.toString().split("\\+")[0]} for Forge MC $project.minecraft_version"
-            releaseType = "release"
-            relations {
-                requiredDependency "architectury-api"
-            }
+    runs {
+        client {
+            client()
+            setConfigName("Forge Client")
+            ideConfigGenerated(true)
+            runDir("run")
+        }
+        server {
+            server()
+            setConfigName("Forge Server")
+            ideConfigGenerated(true)
+            runDir("run")
+        }
+        datagen {
+            data()
+            setConfigName("Forge Datagen")
+            programArgs("--mod", "${mod_id}", "--all", "--output", file("src/generated/resources").absolutePath)
+            ideConfigGenerated(true)
+            runDir("run")
         }
     }
 }
 
-modrinth {
-    token = project.hasProperty("modrinth_api_key") ? project.property("modrinth_api_key") : ""
-    projectId = project.modrinth_project_id
-    versionNumber = project.version
-    versionName = "v${project.version.toString().split("\\+")[0]} for Forge MC $project.minecraft_version"
-    changelog = file("CHANGELOG.md").text
-    versionType = "release"
-    uploadFile = remapJar
-    gameVersions = [project.minecraft_version]
-    loaders = ["forge"]
-    dependencies {
-        // required/optional/incompatible/embedded + project/version
-        required.project "architectury-api"
+sourceSets.main.resources.srcDir 'src/generated/resources'
+
+repositories {
+    maven {
+        name = "Sinytra"
+        url = "https://maven.su5ed.dev/releases"
+    }
+    mavenLocal()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    forge "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "dev.su5ed.sinytra.fabric-api:fabric-api:${forge_fabric_version}"
+    compileOnly project(":common")
+}
+
+tasks.withType(JavaCompile).configureEach {
+    source(project(":common").sourceSets.main.allSource)
+}
+tasks.withType(Javadoc).configureEach {
+    source(project(":common").sourceSets.main.allJava)
+}
+tasks.named("sourcesJar", Jar) {
+    from(project(":common").sourceSets.main.allSource)
+}
+
+processResources {
+    from project(":common").sourceSets.main.resources
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId base.archivesName.get()
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "file://" + System.getenv("local_maven")
+        }
     }
 }
