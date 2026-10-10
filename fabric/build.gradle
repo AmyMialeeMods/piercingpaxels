@@ -1,76 +1,38 @@
-plugins {
-    id 'java'
-    id 'idea'
-    id 'maven-publish'
-    id 'dev.architectury.loom'
+architectury {
+    platformSetupLoomIde()
+    fabric()
 }
+
 base {
     archivesName = "${mod_name}-fabric-${minecraft_version}"
 }
+
+sourceSets.main.java.srcDir project(':common').file('src/main/java')
+sourceSets.main.resources.srcDir project(':common').file('src/main/resources')
+
 dependencies {
-    minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-    implementation project(":common")
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+    modImplementation "dev.architectury:architectury-fabric:${architectury_api_version}"
+    include(modImplementation("io.github.llamalad7:mixinextras-fabric:0.3.5"))
 }
 
 loom {
-    if (project(":common").file("src/main/resources/${mod_id}.accesswidener").exists()) {
-        accessWidenerPath.set(project(":common").file("src/main/resources/${mod_id}.accesswidener"))
-    }
-    mixin {
-        defaultRefmapName.set("${mod_id}.refmap.json")
+    if (project(':common').file("src/main/resources/${mod_id}.accesswidener").exists()) {
+        accessWidenerPath.set(project(':common').file("src/main/resources/${mod_id}.accesswidener"))
     }
     runs {
         client {
             client()
-            setConfigName("Fabric Client")
+            setConfigName('Fabric Client')
             ideConfigGenerated(true)
-            runDir("run")
+            runDir('run')
         }
         server {
             server()
-            setConfigName("Fabric Server")
+            setConfigName('Fabric Server')
             ideConfigGenerated(true)
-            runDir("run")
-        }
-        datagenClient {
-            inherit client
-            name "Data Generation"
-            vmArg "-Dfabric-api.datagen"
-            vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
-            vmArg "-Dfabric-api.datagen.modid=${mod_id}"
-        }
-    }
-}
-
-sourceSets.main.resources.srcDir 'src/main/generated'
-
-tasks.withType(JavaCompile).configureEach {
-    source(project(":common").sourceSets.main.allSource)
-}
-tasks.withType(Javadoc).configureEach {
-    source(project(":common").sourceSets.main.allJava)
-}
-tasks.named("sourcesJar", Jar) {
-    from(project(":common").sourceSets.main.allSource)
-}
-
-processResources {
-    from project(":common").sourceSets.main.resources
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifactId base.archivesName.get()
-            from components.java
-        }
-    }
-    repositories {
-        maven {
-            url "file://" + System.getenv("local_maven")
+            runDir('run')
         }
     }
 }

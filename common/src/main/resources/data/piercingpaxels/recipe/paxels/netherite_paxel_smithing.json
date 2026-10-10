@@ -1,0 +1,1 @@
+{"type":"minecraft:smithing_transform","template":{"item":"minecraft:netherite_upgrade_smithing_template"},"base":{"item":"piercingpaxels:diamond_paxel"},"addition":{"item":"piercingpaxels:netherite_paxel_upgrade_kit"},"result":{"id":"piercingpaxels:netherite_paxel"}}

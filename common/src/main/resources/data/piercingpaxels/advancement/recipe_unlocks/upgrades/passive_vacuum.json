@@ -1,0 +1,16 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_copper_ingot": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:copper_ingot"}]}},
+    "has_redstone": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:redstone"}]}},
+    "has_hopper": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:hopper"}]}},
+    "unlock_right_away": {"trigger": "minecraft:tick"}
+  },
+  "requirements": [
+    ["has_copper_ingot"],
+    ["has_redstone"],
+    ["has_hopper"],
+    ["unlock_right_away"]
+  ],
+  "rewards": {"recipes": ["piercingpaxels:upgrades/passive_vacuum"]}
+}

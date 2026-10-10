@@ -1,0 +1,22 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_iron_sword": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:iron_sword"}]}},
+    "has_iron_pickaxe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:iron_pickaxe"}]}},
+    "has_iron_axe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:iron_axe"}]}},
+    "has_iron_shovel": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:iron_shovel"}]}},
+    "has_iron_hoe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:iron_hoe"}]}},
+    "has_stick": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:stick"}]}},
+    "unlock_right_away": {"trigger": "minecraft:tick"}
+  },
+  "requirements": [
+    ["has_iron_sword"],
+    ["has_iron_pickaxe"],
+    ["has_iron_axe"],
+    ["has_iron_shovel"],
+    ["has_iron_hoe"],
+    ["has_stick"],
+    ["unlock_right_away"]
+  ],
+  "rewards": {"recipes": ["piercingpaxels:paxels/iron_paxel"]}
+}

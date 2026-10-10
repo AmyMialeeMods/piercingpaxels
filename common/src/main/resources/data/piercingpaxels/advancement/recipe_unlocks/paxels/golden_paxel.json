@@ -1,0 +1,22 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_golden_sword": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:golden_sword"}]}},
+    "has_golden_pickaxe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:golden_pickaxe"}]}},
+    "has_golden_axe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:golden_axe"}]}},
+    "has_golden_shovel": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:golden_shovel"}]}},
+    "has_golden_hoe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:golden_hoe"}]}},
+    "has_stick": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:stick"}]}},
+    "unlock_right_away": {"trigger": "minecraft:tick"}
+  },
+  "requirements": [
+    ["has_golden_sword"],
+    ["has_golden_pickaxe"],
+    ["has_golden_axe"],
+    ["has_golden_shovel"],
+    ["has_golden_hoe"],
+    ["has_stick"],
+    ["unlock_right_away"]
+  ],
+  "rewards": {"recipes": ["piercingpaxels:paxels/golden_paxel"]}
+}

@@ -1,0 +1,22 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_wooden_sword": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:wooden_sword"}]}},
+    "has_wooden_pickaxe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:wooden_pickaxe"}]}},
+    "has_wooden_axe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:wooden_axe"}]}},
+    "has_wooden_shovel": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:wooden_shovel"}]}},
+    "has_wooden_hoe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:wooden_hoe"}]}},
+    "has_stick": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:stick"}]}},
+    "unlock_right_away": {"trigger": "minecraft:tick"}
+  },
+  "requirements": [
+    ["has_wooden_sword"],
+    ["has_wooden_pickaxe"],
+    ["has_wooden_axe"],
+    ["has_wooden_shovel"],
+    ["has_wooden_hoe"],
+    ["has_stick"],
+    ["unlock_right_away"]
+  ],
+  "rewards": {"recipes": ["piercingpaxels:paxels/wooden_paxel"]}
+}

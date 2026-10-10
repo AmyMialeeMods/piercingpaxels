@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","pattern":["RCR","CLC","RCR"],"key":{"C":{"item":"minecraft:copper_ingot"},"R":{"item":"minecraft:redstone"},"L":{"item":"minecraft:lava_bucket"}},"result":{"id":"piercingpaxels:passive_smelt"}}

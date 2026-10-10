@@ -1,0 +1,16 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_netherite_upgrade_smithing_template": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:netherite_upgrade_smithing_template"}]}},
+    "has_diamond_paxel": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "piercingpaxels:diamond_paxel"}]}},
+    "has_netherite_paxel_upgrade_kit": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "piercingpaxels:netherite_paxel_upgrade_kit"}]}},
+    "unlock_right_away": {"trigger": "minecraft:tick"}
+  },
+  "requirements": [
+    ["has_netherite_upgrade_smithing_template"],
+    ["has_diamond_paxel"],
+    ["has_netherite_paxel_upgrade_kit"],
+    ["unlock_right_away"]
+  ],
+  "rewards": {"recipes": ["piercingpaxels:paxels/netherite_paxel_smithing"]}
+}

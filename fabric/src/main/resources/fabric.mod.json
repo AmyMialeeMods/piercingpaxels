@@ -24,9 +24,6 @@
         ],
         "client": [
             "xyz.amymialee.piercingpaxels.PiercingPaxelsFabricClient"
-        ],
-        "fabric-datagen": [
-            "xyz.amymialee.piercingpaxels.PiercingPaxelsFabricDatagen"
         ]
     },
     "mixins": [
@@ -35,8 +32,9 @@
     ],
     "accessWidener": "piercingpaxels.accesswidener",
     "depends": {
-        "fabric": "*",
+        "fabricloader": ">=${fabric_loader_version}",
+        "fabric-api": "*",
+        "architectury": ">=13.0.0",
         "minecraft": "${minecraft_version}"
     }
 }
-  

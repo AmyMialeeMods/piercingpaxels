@@ -1,0 +1,16 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_diamond": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:diamond"}]}},
+    "has_amethyst_shard": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:amethyst_shard"}]}},
+    "has_iron_block": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:iron_block"}]}},
+    "unlock_right_away": {"trigger": "minecraft:tick"}
+  },
+  "requirements": [
+    ["has_diamond"],
+    ["has_amethyst_shard"],
+    ["has_iron_block"],
+    ["unlock_right_away"]
+  ],
+  "rewards": {"recipes": ["piercingpaxels:upgrades/active_wall"]}
+}

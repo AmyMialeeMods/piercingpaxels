@@ -1,0 +1,16 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_paper": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:paper"}]}},
+    "has_lapis_lazuli": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:lapis_lazuli"}]}},
+    "has_iron_axe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:iron_axe"}]}},
+    "unlock_right_away": {"trigger": "minecraft:tick"}
+  },
+  "requirements": [
+    ["has_paper"],
+    ["has_lapis_lazuli"],
+    ["has_iron_axe"],
+    ["unlock_right_away"]
+  ],
+  "rewards": {"recipes": ["piercingpaxels:upgrades/usage_axe"]}
+}

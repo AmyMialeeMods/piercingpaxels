@@ -1,0 +1,22 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_netherite_sword": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:netherite_sword"}]}},
+    "has_netherite_pickaxe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:netherite_pickaxe"}]}},
+    "has_netherite_axe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:netherite_axe"}]}},
+    "has_netherite_shovel": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:netherite_shovel"}]}},
+    "has_netherite_hoe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:netherite_hoe"}]}},
+    "has_stick": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:stick"}]}},
+    "unlock_right_away": {"trigger": "minecraft:tick"}
+  },
+  "requirements": [
+    ["has_netherite_sword"],
+    ["has_netherite_pickaxe"],
+    ["has_netherite_axe"],
+    ["has_netherite_shovel"],
+    ["has_netherite_hoe"],
+    ["has_stick"],
+    ["unlock_right_away"]
+  ],
+  "rewards": {"recipes": ["piercingpaxels:paxels/netherite_paxel"]}
+}

@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_netherite_ingot": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:netherite_ingot"}]}},
+    "has_gold_nugget": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:gold_nugget"}]}},
+    "has_nether_star": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:nether_star"}]}},
+    "has_upgrade_restoration": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "piercingpaxels:upgrade_restoration"}]}},
+    "unlock_right_away": {"trigger": "minecraft:tick"}
+  },
+  "requirements": [
+    ["has_netherite_ingot"],
+    ["has_gold_nugget"],
+    ["has_nether_star"],
+    ["has_upgrade_restoration"],
+    ["unlock_right_away"]
+  ],
+  "rewards": {"recipes": ["piercingpaxels:upgrades/upgrade_unbreakable"]}
+}

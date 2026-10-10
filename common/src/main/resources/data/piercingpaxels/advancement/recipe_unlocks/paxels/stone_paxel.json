@@ -1,0 +1,22 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_stone_sword": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:stone_sword"}]}},
+    "has_stone_pickaxe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:stone_pickaxe"}]}},
+    "has_stone_axe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:stone_axe"}]}},
+    "has_stone_shovel": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:stone_shovel"}]}},
+    "has_stone_hoe": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:stone_hoe"}]}},
+    "has_stick": {"trigger": "minecraft:inventory_changed", "conditions": {"items": [{"items": "minecraft:stick"}]}},
+    "unlock_right_away": {"trigger": "minecraft:tick"}
+  },
+  "requirements": [
+    ["has_stone_sword"],
+    ["has_stone_pickaxe"],
+    ["has_stone_axe"],
+    ["has_stone_shovel"],
+    ["has_stone_hoe"],
+    ["has_stick"],
+    ["unlock_right_away"]
+  ],
+  "rewards": {"recipes": ["piercingpaxels:paxels/stone_paxel"]}
+}

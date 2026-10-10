@@ -1,18 +1,38 @@
 plugins {
-    id 'dev.architectury.loom' version '1.2-SNAPSHOT' apply(false)
+    id 'architectury-plugin' version '3.4.164'
+    id 'dev.architectury.loom' version '1.7.435' apply false
+}
+
+architectury {
+    minecraft = minecraft_version
 }
 
 subprojects {
-    apply plugin: 'java'
+    apply plugin: 'dev.architectury.loom'
+
+    repositories {
+        maven { url = 'https://maven.architectury.dev/' }
+        maven { url = 'https://maven.fabricmc.net/' }
+        maven { url = 'https://maven.neoforged.net/releases/' }
+    }
+
+    loom {
+        silentMojangMappingsLicense()
+    }
+
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+        mappings loom.officialMojangMappings()
+    }
 
     java {
-        toolchain.languageVersion = JavaLanguageVersion.of(17)
+        toolchain.languageVersion = JavaLanguageVersion.of(21)
         withSourcesJar()
         withJavadocJar()
     }
 
     jar {
-        from(rootProject.file("LICENSE.md")) {
+        from(rootProject.file('LICENSE.md')) {
             rename { "${it}_${mod_name}" }
         }
         manifest {
@@ -32,48 +52,34 @@ subprojects {
     }
 
     sourcesJar {
-        from(rootProject.file("LICENSE.md")) {
+        from(rootProject.file('LICENSE.md')) {
             rename { "${it}_${mod_name}" }
         }
     }
 
     tasks.withType(JavaCompile).configureEach {
-        it.options.encoding = 'UTF-8'
-        it.options.getRelease().set(17)
-    }
-
-    plugins.withId('dev.architectury.loom') {
-        loom {
-            accessWidenerPath = project(":common").file("src/main/resources/piercingpaxels.accesswidener")
-        }   
+        options.encoding = 'UTF-8'
+        options.release = 21
     }
 
     processResources {
-        var replaceProperties = [
-                minecraft_version            : minecraft_version,
-
-                forge_minecraft_version_range: forge_minecraft_version_range,
-                forge_version                : forge_version,
-                forge_version_range          : forge_version_range,
-                loader_version_range         : loader_version_range,
-
-                fabric_version               : fabric_version,
-                fabric_loader_version        : fabric_loader_version,
-                forge_fabric_version         : forge_fabric_version,
-                forge_fabric_loader_version  : forge_fabric_loader_version,
-
-                mod_id                       : mod_id,
-                mod_name                     : mod_name,
-                mod_version                  : findProperty('mod_version') ?: project.jar.archiveVersion,
-                mod_license                  : mod_license,
-                mod_author                   : mod_author,
-                mod_credits                  : mod_credits,
-                mod_description              : mod_description,
-                mod_url                      : mod_url,
-                mod_issue_tracker_url        : mod_issue_tracker_url,
+        def replaceProperties = [
+            minecraft_version     : minecraft_version,
+            neoforge_version      : neoforge_version,
+            fabric_loader_version : fabric_loader_version,
+            loader_version_range  : loader_version_range,
+            mod_id                : mod_id,
+            mod_name              : mod_name,
+            mod_version           : rootProject.version,
+            mod_license           : mod_license,
+            mod_author            : mod_author,
+            mod_credits           : mod_credits,
+            mod_description       : mod_description,
+            mod_url               : mod_url,
+            mod_issue_tracker_url : mod_issue_tracker_url,
         ]
         inputs.properties replaceProperties
-        filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', '*.mixins.json']) {
+        filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
             expand replaceProperties
         }
     }
@@ -81,4 +87,13 @@ subprojects {
     tasks.withType(GenerateModuleMetadata).configureEach {
         enabled = false
     }
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'architectury-plugin'
+    apply plugin: 'maven-publish'
+
+    group = rootProject.group
+    version = rootProject.version
 }
